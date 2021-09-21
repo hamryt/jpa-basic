@@ -1,16 +1,20 @@
 package hellojpa;
 
+import hellojpa.domain.Member;
+import hellojpa.domain.Order;
+import hellojpa.domain.OrderItem;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
+import org.hibernate.sql.ordering.antlr.OrderByAliasResolver;
 
 /**
  * jpa에서 데이터가 조작되는 모든 단위는 transaction단위로 돼야한다.
  */
 public class JpaMain {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         // 애플리케이션 전체에서 공유
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         // thread간 공유하면 안된다. 한번 쓰고 버려야 한다.
@@ -21,24 +25,19 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Member member = em.find(Member.class, 1L);
-//            System.out.println("findMember.id = " + member.getId());
-
-            // 대상이 테이블이 아니고 객체이다.
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                .setFirstResult(1)
-                .setMaxResults(8)
-                .getResultList();
-
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
-
+            OrderItem orderItem = new OrderItem();
+            
+            Order order = new Order();
+            order.addOrderItem(orderItem);
+            
+            
+            
+            // 커밋을 해야 디비에 쿼리를 보낸다.
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
-            em.close();
+            em.close(); 
         }
 
         emf.close();
