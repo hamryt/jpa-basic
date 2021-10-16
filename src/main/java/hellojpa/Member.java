@@ -1,4 +1,6 @@
-package hellojpa.domain;
+package hellojpa;
+
+import hellojpa.domain.Order;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

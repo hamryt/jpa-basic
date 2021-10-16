@@ -25,14 +25,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            OrderItem orderItem = new OrderItem();
-            
-            Order order = new Order();
-            order.addOrderItem(orderItem);
-            
-            
-            
+
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
             // 커밋을 해야 디비에 쿼리를 보낸다.
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

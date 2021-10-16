@@ -1,4 +1,7 @@
-package hellojpa.domain;
+package hellojpa;
+
+import hellojpa.domain.Item;
+import hellojpa.domain.Order;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +21,7 @@ public class OrderItem {
     
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private hellojpa.domain.Order order;
     
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -36,7 +39,7 @@ public class OrderItem {
         this.id = id;
     }
     
-    public Order getOrder() {
+    public hellojpa.domain.Order getOrder() {
         return order;
     }
     

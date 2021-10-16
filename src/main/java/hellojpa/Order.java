@@ -1,4 +1,8 @@
-package hellojpa.domain;
+package hellojpa;
+
+import hellojpa.domain.Member;
+import hellojpa.domain.OrderItem;
+import hellojpa.domain.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
